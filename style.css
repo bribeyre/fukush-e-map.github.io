@@ -1,11 +1,70 @@
-.body{
-    margin:0;
+header {
+    margin-bottom: 20px; /* Ajoute un espace de 20 pixels en bas de l'en-tête */
+    background-image: url("img/banniére3.png");
+    background-size: cover; /* Redimensionne l'image pour couvrir l'en-tête */
+    background-position: center; /* Centre l'image dans l'en-tête */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  }
+/* Ajuster les marges et paddings des éléments internes */
+header .navbar-brand img {
+  width: 50px; /* Réduire la taille du logo */
+  height: 50px;
+  margin-right: 10px; /* Ajouter un espace entre le logo et le texte */
 }
+
+header .navbar-brand {
+  margin-right: 20px; /* Ajouter un espace entre les éléments du header */
+}
+
+header .col-4.text-center {
+  padding-top: 10px; /* Ajouter un espace au-dessus des liens du centre */
+  padding-bottom: 10px; /* Ajouter un espace en dessous des liens du centre */
+}
+
+header .col-4.d-flex.justify-content-end.align-items-center {
+  padding-top: 10px; /* Ajouter un espace au-dessus du bouton Source */
+  padding-bottom: 10px; /* Ajouter un espace en dessous du bouton Source */
+}
+
 .container{
     margin-right: auto;
     margin-left: auto;
+    position: relative;
+    padding-top: 50px;
 }
-.col-md-6{
-    flex: 0 0 auto;
-    width: 50%;
+
+#contexte{
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f0f0f0; /* Background color */
+    position: relative;
+    border-radius: 10px; /* Vous pouvez ajuster la valeur en pixels selon le degré de courbure souhaité */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.content {
+    padding: 20px;
+  }
+  @font-face {
+    font-family: 'Allerta Stencile';
+    src: url('font/AllertaStencil-Regular.ttf') format('truetype');
+    /* Ajoutez d'autres formats si nécessaire */
+}
+body {
+    font-family: 'Allerta Stencile', sans-serif;
+    margin:0;
+    padding-top: 70px;
+}
+#map{
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+
+}
+html,body{
+  width:100%;
+  margin:0;
+  padding:0;
 }
