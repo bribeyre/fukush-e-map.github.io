@@ -58,4 +58,42 @@ var fullscreenControl = L.Control.extend({
       button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran
     }
   }
-  
+
+// Fonction pour récupérer et afficher les données GeoJSON
+function DisplayHeatmap(url) {
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          // Création d'un tableau pour stocker les données de la carte de chaleur
+          var heatData = [];
+
+          // Parcourir les features du GeoJSON
+          data.features.forEach(feature => {
+              // Extraire les coordonnées de la géométrie de la feature
+              var coordinates = feature.geometry.coordinates;
+
+              // Vérifier le type de géométrie (MultiPoint, Point, etc.)
+              if (feature.geometry.type === 'MultiPoint') {
+                  coordinates.forEach(coord => {
+                      // Ajouter les coordonnées et la valeur de radiation à la liste des données de chaleur
+                      heatData.push([coord[1], coord[0], feature.properties.radiation]);
+                  });
+              } else if (feature.geometry.type === 'Point') {
+                  // Ajouter les coordonnées et la valeur de radiation à la liste des données de chaleur
+                  heatData.push([coordinates[1], coordinates[0], feature.properties.radiation]);
+              }
+          });
+
+          // Création de la couche de chaleur avec les données récupérées
+          var heatLayer = L.heatLayer(heatData, {
+              radius: 25,
+              blur: 15,
+              maxZoom: 18,
+          }).addTo(map);
+      })
+}
+
+
+// Appel de la fonction fetchGeoJSONAndDisplayHeatmap avec l'URL de votre fichier GeoJSON
+DisplayHeatmap('data/Heatmap-japon.geojson');
+
