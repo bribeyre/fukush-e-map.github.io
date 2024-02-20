@@ -7,24 +7,28 @@ header {
   }
 /* Ajuster les marges et paddings des éléments internes */
 header .navbar-brand img {
-  width: 50px; /* Réduire la taille du logo */
-  height: 50px;
-  margin-right: 10px; /* Ajouter un espace entre le logo et le texte */
+  width: 65px; /* Réduire la taille du logo */
+  height: 65px;
+  margin-right: 5px; /* Ajouter un espace entre le logo et le texte */
+}
+header .navbar-brand {
+  font-size : 1.80rem;
 }
 
 header .navbar-brand {
   margin-right: 20px; /* Ajouter un espace entre les éléments du header */
 }
 
-header .col-4.text-center {
-  padding-top: 10px; /* Ajouter un espace au-dessus des liens du centre */
-  padding-bottom: 10px; /* Ajouter un espace en dessous des liens du centre */
-}
-
 header .col-4.d-flex.justify-content-end.align-items-center {
   padding-top: 10px; /* Ajouter un espace au-dessus du bouton Source */
   padding-bottom: 10px; /* Ajouter un espace en dessous du bouton Source */
 }
+.custom-btn {
+  background-color: #EEE9E4;
+  color:#B32A2A;
+  /* Ajoutez d'autres styles personnalisés selon vos besoins */
+}
+
 
 .container{
     margin-right: auto;
