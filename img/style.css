@@ -1,0 +1,220 @@
+header {
+    margin-bottom: 20px; /* Ajoute un espace de 20 pixels en bas de l'en-tête */
+    background-image: url("img/banniére3.png");
+    background-size: cover; /* Redimensionne l'image pour couvrir l'en-tête */
+    background-position: center; /* Centre l'image dans l'en-tête */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    z-index: 1000; /* Définir un z-index élevé pour maintenir le header au-dessus */
+
+  }
+  .leaflet-sidebar-header {
+    background-color: #5A7B85;
+    opacity: 0.9;
+    margin-bottom: 10px; /* Ajoute un espace de 10 pixels en bas de l'en-tête */
+    max-height: 60px; /* Limite la hauteur de l'en-tête */
+  }
+   
+/* Ajuster les marges et paddings des éléments internes */
+header .navbar-brand img {
+  width: 65px; /* Réduire la taille du logo */
+  height: 65px;
+  margin-right:2px; /* Ajouter un espace entre le logo et le texte */
+}
+header .navbar-brand {
+  font-size : 1.80rem;
+  margin-right: 20px;
+  color: #FEFCFC;
+  margin-right: 20px;
+}
+
+header .col-4.d-flex.justify-content-end.align-items-center {
+  padding-top: 10px; /* Ajouter un espace au-dessus du bouton Source */
+  padding-bottom: 10px; /* Ajouter un espace en dessous du bouton Source */
+}
+.custom-btn {
+  background-color: #EEE9E4;
+  color: #B32A2A;
+  border-color: black;
+  border-radius: 21px;
+  
+  /* Ajoutez d'autres styles personnalisés selon vos besoins */
+}
+
+.btn-outline-primary:hover {
+  color: #B32A2A;
+  background-color: #EEE9E4;
+  border-color: #EEE9E4;
+}
+
+
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    padding-top: 50px;
+}
+
+#contexte{
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #2C7185; /* Background color */
+    position: relative;
+    border-radius: 10px; /* Vous pouvez ajuster la valeur en pixels selon le degré de courbure souhaité */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* style du titre du contexte */
+.display-5.fst-italic{
+  color: #FEFCFC;
+}
+/* style du texte du contexte */
+.lead{
+  color: #FEFCFC;
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(2) .border {
+  background-color: #5A7B85; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(3) .border {
+  background-color: #5A9CB1; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+
+.content {
+    padding: 20px;
+  }
+  @font-face {
+    font-family: 'Allerta Stencile';
+    src: url('font/AllertaStencil-Regular.ttf') format('truetype');
+}
+body {
+    font-family: 'Allerta Stencile', sans-serif;
+    margin:0;
+    padding-top: 70px;
+}
+html,body{
+  width:100%;
+  margin:0; 
+  padding:0;
+}
+.custom-map-container {
+  position: relative;
+  height: calc(100vh - 80px);
+}
+#map {
+  height: 100%; /* Hauteur de la carte à 100% du conteneur */
+  margin-top: 30px;
+<<<<<<< HEAD
+  z-index: 999;
+=======
+}
+#sidebar {
+  z-index: 999; /* Définir un z-index légèrement inférieur pour la sidebar */
+  font-family: 'Allerta Stencile', sans-serif;
+  color:black;
+  
+}
+.leaflet-sidebar-header{
+  background-color:#5A7B85 ;
+  opacity: 90%;
+}
+.leaflet-sidebar-tabs{
+  background-color: #5A7B85;
+  
+}
+.leaflet-sidebar-content{
+  background-color: #D6D6D6;
+  opacity: 90%;
+  width: 75%; /* Largeur fixe */
+  max-width: 350px; /* Largeur maximale fixe */
+}
+
+
+/* style du titre du contexte */
+.display-5.fst-italic{
+  color: #FEFCFC;
+}
+/* style du texte du contexte */
+.lead{
+  color: #FEFCFC;
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(2) .border {
+  background-color: #5A7B85; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(3) .border {
+  background-color: #5A9CB1; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+/* Style des éléments de la liste */
+ul li {
+  color: white; /* Change la couleur du texte des éléments de la liste */
+>>>>>>> be9086d68042ce0bfc2aa25d24ca59801d0f66a8
+}
+
+.border-bottom {
+  border-bottom: 0px solid #dee2e6 !important;
+}
+
+/* STYLE du sidepanel */
+
+.sidepanel {
+  position: relative;
+  z-index: 999; /* Définir un z-index inférieur pour le sidepanel */
+  font-family: 'Allerta Stencile', sans-serif;
+}
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header a {
+  font-size: 16px;
+  color: #D6D6D6;
+  text-decoration: none;
+  margin-left: 24px;
+}
+
+.header a:hover {
+  color: #D6D6D6;
+  text-decoration: underline;
+}
+
+.header a span {
+  margin-left: 4px;
+}
+
+.header a svg {
+  vertical-align: middle;
+}
+
+.sidepanel-content {
+  font-size: 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  transition: color 0.3s ease-in;
+  font-family: 'Allerta Stencile', sans-serif;
+}
+
+.sidepanel-content h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.sidepanel-content a:hover {
+  color: #D6D6D6;
+  text-decoration: underline;
+}
