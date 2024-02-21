@@ -1,17 +1,23 @@
-
-var map = L.map('map').setView([36.2048, 138.2529], 5);
-
-var sidebar = L.control.sidebar({ container: 'sidebar' }).addTo(map);
-
-// ajout du fond de carte : "ESRI imagerie satellite"
-var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+const map = L.map('map', {
+  zoomControl: false
+}).setView([36.2048, 138.2529], 5);
+L.control.scale({
+  position: 'topright'
+}).addTo(map);
+L.control.zoom({
+  position: 'bottomright'
 }).addTo(map);
 
-
+const sidepanelLeft = L.control.sidepanel('mySidepanelLeft', {
+  tabsPosition: 'left',
+  startTab: 'tab-1'
+}).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 // Création d'un contrôle personnalisé pour le bouton de plein écran
 var fullscreenControl = L.Control.extend({
-    onAdd: function(map) {
+  onAdd: function(map) {
       var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
       var button = L.DomUtil.create('a', 'leaflet-bar-part leaflet-control-custom', container);
       button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran par défaut
@@ -29,33 +35,32 @@ var fullscreenControl = L.Control.extend({
       button.style.fontFamily = 'sans-serif';
       button.style.fontSize = '12px';
       button.style.fontWeight = 'bold';
-  
+
       button.onclick = function() {
-        toggleFullScreen();
+          toggleFullScreen();
       }
-  
+
       return container;
-    },
-  });
-  
-  // Ajout du contrôle personnalisé à la carte Leaflet
-  map.addControl(new fullscreenControl({position: 'topleft'}));
-  
-  // Fonction pour mettre la carte en plein écran
-  function toggleFullScreen() {
-    var elem = document.getElementById('map');
-    var button = document.querySelector('.leaflet-control-custom');
-  
-    if (!document.fullscreenElement) {
+  },
+});
+
+// Ajout du contrôle personnalisé à la carte Leaflet
+map.addControl(new fullscreenControl({ position: 'bottomright' }));
+
+// Fonction pour mettre la carte en plein écran
+function toggleFullScreen() {
+  var elem = document.getElementById('map');
+  var button = document.querySelector('.leaflet-control-custom');
+
+  if (!document.fullscreenElement) {
       elem.requestFullscreen().catch(err => {
-        alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+          alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
       });
       button.innerHTML = '<i class="fas fa-compress"></i>'; // icône pour sortir du plein écran
-    } else {
+  } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen();
+          document.exitFullscreen();
       }
       button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran
-    }
   }
-  
+}

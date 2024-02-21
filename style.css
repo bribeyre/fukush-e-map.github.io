@@ -66,6 +66,28 @@ header .col-4.d-flex.justify-content-end.align-items-center {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
+/* style du titre du contexte */
+.display-5.fst-italic{
+  color: #FEFCFC;
+}
+/* style du texte du contexte */
+.lead{
+  color: #FEFCFC;
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(2) .border {
+  background-color: #5A7B85; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+
+/* Style pour le conteneur risque réel vs risque perçu*/
+.col-md-12:nth-child(3) .border {
+  background-color: #5A9CB1; /* Changer la couleur de fond  */
+  color: #FEFCFC; /* Changer la couleur des textes  */
+}
+
 .content {
     padding: 20px;
   }
@@ -90,67 +112,61 @@ html,body{
 #map {
   height: 100%; /* Hauteur de la carte à 100% du conteneur */
   margin-top: 30px;
-}
-#sidebar {
-  z-index: 999; /* Définir un z-index légèrement inférieur pour la sidebar */
-  font-family: 'Allerta Stencile', sans-serif;
-  color:black;
-  
-}
-.leaflet-sidebar-header{
-  background-color:#5A7B85 ;
-  opacity: 90%;
-}
-.leaflet-sidebar-tabs{
-  background-color: #5A7B85;
-  
-}
-.leaflet-sidebar-content{
-  background-color: #D6D6D6;
-  opacity: 90%;
-  width: 300px; /* Largeur fixe */
-  max-width: 80%; /* Largeur maximale en pourcentage */
-}
-
-
-/* style du titre du contexte */
-.display-5.fst-italic{
-  color: #FEFCFC;
-}
-/* style du texte du contexte */
-.lead{
-  color: #FEFCFC;
-}
-
-/* Style pour le conteneur risque réel vs risque perçu*/
-.col-md-12:nth-child(2) .border {
-  background-color: #5A7B85; /* Changer la couleur de fond  */
-  color: #FEFCFC; /* Changer la couleur des textes  */
-}
-
-/* Style pour le conteneur risque réel vs risque perçu*/
-.col-md-12:nth-child(3) .border {
-  background-color: #5A9CB1; /* Changer la couleur de fond  */
-  color: #FEFCFC; /* Changer la couleur des textes  */
-}
-/* Style des éléments de la liste */
-ul li {
-  color: white; /* Change la couleur du texte des éléments de la liste */
+  z-index: 999;
 }
 
 .border-bottom {
   border-bottom: 0px solid #dee2e6 !important;
 }
 
-@media (min-width: 768px) {
-  .leaflet-sidebar.leaflet-touch {
-    border: 0px solid rgba(0, 0, 0, 0.2);
-    border-right-width: 0px;
-    border-right-style: solid;
-    border-right-color: rgba(0, 0, 0, 0.2);
-  }
+/* STYLE du sidepanel */
+
+.sidepanel {
+  position: relative;
+  z-index: 999; /* Définir un z-index inférieur pour le sidepanel */
+  font-family: 'Allerta Stencile', sans-serif;
 }
-.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
-  border: 0px solid rgba(0,0,0,0.2);
-  background-clip: padding-box;
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header a {
+  font-size: 16px;
+  color: #D6D6D6;
+  text-decoration: none;
+  margin-left: 24px;
+}
+
+.header a:hover {
+  color: #D6D6D6;
+  text-decoration: underline;
+}
+
+.header a span {
+  margin-left: 4px;
+}
+
+.header a svg {
+  vertical-align: middle;
+}
+
+.sidepanel-content {
+  font-size: 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  transition: color 0.3s ease-in;
+  font-family: 'Allerta Stencile', sans-serif;
+}
+
+.sidepanel-content h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.sidepanel-content a:hover {
+  color: #D6D6D6;
+  text-decoration: underline;
 }
