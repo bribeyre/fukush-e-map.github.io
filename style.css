@@ -66,28 +66,6 @@ header .col-4.d-flex.justify-content-end.align-items-center {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-
-/* style du titre du contexte */
-.display-5.fst-italic{
-  color: #FEFCFC;
-}
-/* style du texte du contexte */
-.lead{
-  color: #FEFCFC;
-}
-
-/* Style pour le conteneur risque réel vs risque perçu*/
-.col-md-12:nth-child(2) .border {
-  background-color: #5A7B85; /* Changer la couleur de fond  */
-  color: #FEFCFC; /* Changer la couleur des textes  */
-}
-
-/* Style pour le conteneur risque réel vs risque perçu*/
-.col-md-12:nth-child(3) .border {
-  background-color: #5A9CB1; /* Changer la couleur de fond  */
-  color: #FEFCFC; /* Changer la couleur des textes  */
-}
-
 .content {
     padding: 20px;
   }
@@ -160,6 +138,7 @@ html,body{
   color: black;
   transition: color 0.3s ease-in;
   font-family: 'Allerta Stencile', sans-serif;
+  opacity: ;
 }
 
 .sidepanel-content h4 {

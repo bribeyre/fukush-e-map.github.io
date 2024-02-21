@@ -63,4 +63,3 @@ function toggleFullScreen() {
       }
       button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran
   }
-}
