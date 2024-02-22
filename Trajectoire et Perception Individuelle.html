@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dist_side_panel/leaflet-sidepanel.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
   <!-- Full screen -->
 </head>
 
@@ -47,10 +46,10 @@
                 <hr>
                 <div>
                   <h5>Choix de l'individu type</h5>
-                  <select id="options" name="options">
-                    <option value="option1">jeune Homme salarié déplacé</option>
-                    <option value="option2">jeune Femme salarié residente</option>
-                    <option value="option3">Indiv 3</option>
+                  <select id="id_dilemSelect">
+                    <option value="">Sélectionnez un ID</option>
+                    <option value="ID03">ID03</option>
+                    <option value="ID04">ID04</option>
                   </select>
                 </div>
                 <hr>
@@ -64,42 +63,46 @@
                 <hr>
                 <div>
                   <h5>Trajectoire de l'individu</h5>
-                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="Trajectoire" class="far fa-eye"></i></button>
+                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="Trajectoire"
+                      class="far fa-eye"></i></button>
                   <label for="toggleLayer">Trajectoire</label><br>
                   <hr>
                   <h5>Perception du risque</h5>
-                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="Tracer_risques_indiv" class="far fa-eye"></i></button>
+                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="T"
+                      class="far fa-eye"></i></button>
                   <label for="toggleLayer">Tracé de la perception du risques</label><br>
                   <hr>
-                <div>
-                  <label for="slider">Choisir une année</label><br>
-                  <input type="range" id="slider" name="slider" min="0" max="4" value="2" list="tickmarks">
-                  <datalist id="tickmarks"> 
+                  <div>
+                    <label for="slider">Choisir une année</label><br>
+                    <input type="range" id="slider" name="slider" min="0" max="4" value="2" list="tickmarks">
+                    <datalist id="tickmarks">
                       <option value="1">2013</option>
                       <option value="2">2015</option>
                       <option value="3">2017</option>
-                  </datalist>
+                    </datalist>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="sidepanel-toggle-container">
-          <button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
+          <div class="sidepanel-toggle-container">
+            <button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
+          </div>
         </div>
       </div>
-      <!-- Footer -->
-      <!-- Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <!-- Leaflet JS -->
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <!-- Sidebar Leaflet JS -->
-      <script src="dist_side_panel/leaflet-sidepanel.min.js"></script>
+    </div>
+    <!-- Footer -->
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Sidebar Leaflet JS -->
+    <script src="dist_side_panel/leaflet-sidepanel.min.js"></script>
 
-      <!-- Your Map Initialization Script -->
-      <script src="Jquery.js"></script>
-      <script src="leaflet.js"></script>
+    <!-- Your Map Initialization Script -->
+    <script src="Jquery.js"></script>
+    <script src="leaflet.js"></script>
 </body>
 
 </html>

@@ -205,7 +205,7 @@ select {
 
 /* Style pour positionner les labels en dessous */
 #tickmarks {
-  display:flex;
+  display: flex;
   padding-top: 10px;
   list-style-type: none;
   margin: 0;
@@ -216,8 +216,10 @@ select {
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: center; /* Pour centrer les tickmarks horizontalement */
-  transform: translateY(100%); /* Pour les déplacer en bas */
+  text-align: center;
+  /* Pour centrer les tickmarks horizontalement */
+  transform: translateY(100%);
+  /* Pour les déplacer en bas */
 }
 
 #toggleLayer {
@@ -227,6 +229,8 @@ select {
   border: none;
   cursor: pointer;
 }
+
 #toggleLayer:focus {
-  outline: none; /* Supprime la bordure de focus */
+  outline: none;
+  /* Supprime la bordure de focus */
 }
