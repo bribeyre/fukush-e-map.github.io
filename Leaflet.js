@@ -108,20 +108,24 @@ function zoomToFukushima() {
 var geojsonLayer = L.geoJSON().addTo(map);
 
 // Utiliser Fetch pour charger le fichier GeoJSON
-fetch('./data/individus.geojson')
-  .then(response => {
-    // Vérifier si la réponse est OK (code de statut 200)
-    if (!response.ok) {
-      throw new Error('Erreur lors du chargement du fichier GeoJSON');
-    }
-    // Convertir la réponse en JSON
-    return response.json();
-  })
-  .then(data => {
-    // Ajouter les données GeoJSON à la couche GeoJSON
-    geojsonLayer.addData(data);
-  })
-  .catch(error => {
-    // Gérer les erreurs
-    console.error('Erreur Fetch:', error);
-  });
+function addGeoJSONLayer(url) {
+  // Utiliser Fetch pour charger le fichier GeoJSON depuis l'URL spécifiée
+  fetch(url)
+    .then(response => {
+      // Vérifier si la réponse est OK (code de statut 200)
+      if (!response.ok) {
+        throw new Error('Erreur lors du chargement du fichier GeoJSON');
+      }
+      // Convertir la réponse en JSON
+      return response.json();
+    })
+    .then(data => {
+      // Ajouter les données GeoJSON à la couche GeoJSON
+      geojsonLayer.addData(data);
+    })
+    .catch(error => {
+      // Gérer les erreurs
+      console.error('Erreur Fetch:', error);
+    });
+}
+addGeoJSONLayer("data/individus.geojson")
