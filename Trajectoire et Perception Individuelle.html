@@ -41,39 +41,44 @@
             <div class="sidepanel-content">
               <div class="sidepanel-tab-content" data-tab-content="tab-1">
                 </h1>
-                <h4>Parcours</h4>
-                <br>
+                <h4>Trajectoire et Perception Individuelle</h4>
+                <hr>
+                <p> [...]</p>
+                <hr>
                 <div>
-                  <h5>Choix de l'individu types</h5>
+                  <h5>Choix de l'individu type</h5>
                   <select id="options" name="options">
-                    <option value="option1">Indiv 1</option>
-                    <option value="option2">Indiv 2</option>
+                    <option value="option1">jeune Homme salarié déplacé</option>
+                    <option value="option2">jeune Femme salarié residente</option>
                     <option value="option3">Indiv 3</option>
                   </select>
                 </div>
                 <hr>
                 <div>
                   <h5>Echelle de la Carte</h5>
-                  <input type="radio" id="option1" name="options" value="option1">
+                  <input type="radio" id="option1" name="options" value="japan" onclick="zoomToJapan()">
                   <label for="option1">Japon</label><br>
-                  <input type="radio" id="option2" name="options" value="option2">
+                  <input type="radio" id="option2" name="options" value="fukushima" onclick="zoomToFukushima()">
                   <label for="option2">Fukushima</label><br>
                 </div>
                 <hr>
                 <div>
-                  <h6>Trajectoire de l'individu</h6>
-                  <input type="checkbox" id="checkbox1" name="checkbox1">
-                  <label for="checkbox1">Trajectoire</label><br>
-                  <h6>Perception du risques</h6>
-                  <input type="checkbox" id="checkbox2" name="checkbox2">
-                  <label for="checkbox2">Tracée de la perception du risques</label><br>
+                  <h5>Trajectoire de l'individu</h5>
+                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="Trajectoire" class="far fa-eye"></i></button>
+                  <label for="toggleLayer">Trajectoire</label><br>
                   <hr>
-                </div>
-
-                <hr>
+                  <h5>Perception du risque</h5>
+                  <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="Tracer_risques_indiv" class="far fa-eye"></i></button>
+                  <label for="toggleLayer">Tracé de la perception du risques</label><br>
+                  <hr>
                 <div>
-                  <label for="slider">Choisi une année</label><br>
-                  <input type="range" id="slider" name="slider" min="0" max="100" value="50">
+                  <label for="slider">Choisir une année</label><br>
+                  <input type="range" id="slider" name="slider" min="0" max="4" value="2" list="tickmarks">
+                  <datalist id="tickmarks"> 
+                      <option value="1">2013</option>
+                      <option value="2">2015</option>
+                      <option value="3">2017</option>
+                  </datalist>
                 </div>
               </div>
             </div>

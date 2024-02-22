@@ -40,19 +40,19 @@
             <div class="sidepanel-content">
               <div class="sidepanel-tab-content" data-tab-content="tab-1">
                 </h1>
-                <h4>Perception du risques</h4>
-                <br>
+                <h3>Perception du risque</h3> <hr>
                 <div>
-                  <h5>Choix d'un type de déplacer</h5>
+                  <h6>Choix du groupe (statut de déplacement)</h6>
                   <select id="options" name="options">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="option1">déplacé</option>
+                    <option value="option2">résident</option>
+                    <option value="option3">retourné</option>
+                    <option value="option4">déplacé forcé</option>
                   </select>
                 </div>
                 <hr>
                 <div>
-                  <h5>Echelle de la Carte</h5>
+                  <h6>Echelle de la Carte</h6>
                   <input type="radio" id="option1" name="options" value="option1">
                   <label for="option1">Japon</label><br>
                   <input type="radio" id="option2" name="options" value="option2">
@@ -60,17 +60,17 @@
                 </div>
                 <hr>
                 <div>
-                  <h6>Zone crée par l'enquête</h6>
+                  <h6>Catégorie pour l'agrégation des perceptions</h6>
                   <input type="checkbox" id="checkbox1" name="checkbox1">
-                  <label for="checkbox1">Zone jugées sure</label><br>
+                  <label for="checkbox1">Zones jugées sures</label><br>
                   <input type="checkbox" id="checkbox2" name="checkbox2">
-                  <label for="checkbox2">Zone jugées dangereux</label><br>
+                  <label for="checkbox2">Zones jugées dangereuses</label><br>
                   <input type="checkbox" id="checkbox3" name="checkbox3">
-                  <label for="checkbox3">Zone intersticielles</label><br>
+                  <label for="checkbox3">Zones intersticielles</label><br>
                   <hr>
-                  <h5>Zone crée par le gouvernement</h5>
+                  <h6>Carte de mesure officielle diffusée par le gouvernement (en 2019)</h>
                   <input type="checkbox" id="checkbox3" name="checkbox3">
-                  <label for="checkbox3">Radation mésurées par le gouvernement</label><br>
+                  <label for="checkbox3">Radation mésurée par le gouvernement</label><br>
                 </div>
 
                 <hr>
@@ -86,8 +86,8 @@
           <button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
         </div>
       </div>
+      <div id="legend" class="leaflet-bottom leaflet-left"></div>
       <!-- Footer -->
-      <!-- div id="footer"></div> -->
       <!-- Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
