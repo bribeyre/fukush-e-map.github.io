@@ -65,17 +65,6 @@ function toggleFullScreen() {
   }
 }
 
-var legend = L.control({ position: 'bottomleft' });
-
-legend.onAdd = function (map) {
-  var div = L.DomUtil.create('div', 'info legend');
-  // Contenu de votre légende
-  div.innerHTML = '<h4>Légende</h4><p>Explication des symboles ou des couleurs</p>';
-  return div;
-};
-
-legend.addTo(map);
-
 var toggleButton = document.getElementById('toggleLayer');
 
 // Sélection de la couche que vous souhaitez afficher/masquer
@@ -101,11 +90,38 @@ toggleButton.addEventListener('click', function () {
   }
 });
 
-
 function zoomToJapan() {
-  map.setView([35.6895, 139.6917], 7); // Centrer sur le Japon
+  // Définir une étendue qui couvre l'ensemble du Japon
+  var bounds = [
+    [20.0, 122.0], // Coin sud-ouest
+    [45.0, 155.0]  // Coin nord-est
+  ];
+  
+  // Centrer et zoomer sur l'ensemble du Japon
+  map.fitBounds(bounds, { padding: [50, 50] }); // Vous pouvez ajuster le padding selon vos besoins
 }
 
 function zoomToFukushima() {
   map.setView([37.7749, 140.4674], 10); // Centrer sur Fukushima
 }
+
+var geojsonLayer = L.geoJSON().addTo(map);
+
+// Utiliser Fetch pour charger le fichier GeoJSON
+fetch('./data/individus.geojson')
+  .then(response => {
+    // Vérifier si la réponse est OK (code de statut 200)
+    if (!response.ok) {
+      throw new Error('Erreur lors du chargement du fichier GeoJSON');
+    }
+    // Convertir la réponse en JSON
+    return response.json();
+  })
+  .then(data => {
+    // Ajouter les données GeoJSON à la couche GeoJSON
+    geojsonLayer.addData(data);
+  })
+  .catch(error => {
+    // Gérer les erreurs
+    console.error('Erreur Fetch:', error);
+  });
