@@ -65,30 +65,6 @@ function toggleFullScreen() {
   }
 }
 
-var toggleButton = document.getElementById('toggleLayer');
-
-// Sélection de la couche que vous souhaitez afficher/masquer
-var layerToToggle = L.layerGroup(); // Remplacez cela par votre propre couche
-
-// État initial de la couche (visible)
-var layerVisible = true;
-
-// Ajout d'un écouteur d'événements au clic sur le bouton de bascule
-toggleButton.addEventListener('click', function () {
-  if (layerVisible) {
-    // Masquer la couche si elle est actuellement visible
-    map.removeLayer(layerToToggle);
-    layerVisible = false;
-    // Mettre à jour l'icône du bouton
-    toggleButton.innerHTML = '<i class="far fa-eye-slash"></i>';
-  } else {
-    // Afficher la couche si elle est actuellement masquée
-    layerToToggle.addTo(map);
-    layerVisible = true;
-    // Mettre à jour l'icône du bouton
-    toggleButton.innerHTML = '<i class="far fa-eye"></i>';
-  }
-});
 // ZOOM TO JAPAN
 function zoomToJapan() {
   map.setView([36.2048, 138.2529], 5);
@@ -194,5 +170,126 @@ function updateData(id_dilem) {
   });
   console.log('Nombre d\'entités filtrées pour l\'ID', id_dilem, ':', filteredFeatures.length);
   geojsonLayer.addData({ type: 'FeatureCollection', features: filteredFeatures });
-
 }
+
+// ajout julien 
+
+// On importe la futur symbologie de la centrale nucléaire qui sera une image
+var customIcon = L.icon({
+  iconUrl: 'img/centrale.png',
+  iconSize: [32, 32]
+});
+
+// Ajout de la couche GeoJSON de la centrale et d'une popup affichant son nom au click
+function ChargerCentrale() {
+  return fetch('data/centrale.geojson')
+    .then(response => response.json());
+}
+
+ChargerCentrale()
+  .then(data => {
+    L.geoJSON(data, {
+      pointToLayer: function (feature, latlng) {
+        var marker = L.marker(latlng, { icon: customIcon });
+        var popupContent = feature.properties.Nom;
+        marker.bindPopup(popupContent);
+        return marker;
+      }
+    }).addTo(map);
+  })
+  .catch(error => {
+    console.error('Erreur lors du chargement des données:', error);
+  });
+
+
+  var prefectureVisible = true;
+  var municipaliteVisible = true;
+  
+  document.getElementById('togglePrefecture').addEventListener('click', function () {
+    toggleLayer(prefectureLayer, 'togglePrefecture');
+  });
+  
+  document.getElementById('toggleMunicipalite').addEventListener('click', function () {
+    toggleLayer(municipaliteLayer, 'toggleMunicipalite');
+  });
+  
+  function toggleLayer(layer, buttonId) {
+    if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+      if (buttonId === 'togglePrefecture') {
+        prefectureVisible = false;
+      } else if (buttonId === 'toggleMunicipalite') {
+        municipaliteVisible = false;
+      }
+      document.getElementById(buttonId).textContent = 'Afficher ' + buttonId.split('toggle')[1];
+    } else {
+      layer.addTo(map);
+      if (buttonId === 'togglePrefecture') {
+        prefectureVisible = true;
+      } else if (buttonId === 'toggleMunicipalite') {
+        municipaliteVisible = true;
+      }
+      document.getElementById(buttonId).textContent = 'Masquer ' + buttonId.split('toggle')[1];
+    }
+  }
+  
+  // Fetch pour récupérer les données des municipalités
+  fetch('data/municipalite.geojson')
+    .then(response => response.json())
+    .then(data => {
+      municipaliteLayer = L.geoJSON(data, {
+        style: function (feature) {
+          return {
+            fillColor: 'white',
+            fillOpacity: 0.3,
+            color: 'white',
+            weight: 1
+          };
+        },
+        onEachFeature: function (feature, layer) {
+          var popupmunicipalite = "<b>Nom municipalitée: </b>" + feature.properties.commune + "<br>" +
+            "<b>Résidant en 2011: </b>" + feature.properties['2011'] + "<br>" +
+            "<b>Résidant en 2013: </b>" + feature.properties['2013'] + "<br>" +
+            "<b>Résidant en 2014: </b>" + feature.properties['2014'] + "<br>" +
+            "<b>Résidant en 2015: </b>" + feature.properties['2015'] + "<br>" +
+            "<b>Résidant en 2016: </b>" + feature.properties['2016'] + "<br>" +
+            "<b>Résidant en 2017: </b>" + feature.properties['2017'];
+          layer.bindPopup(popupmunicipalite);
+        }
+      }).addTo(map);
+    })
+    .catch(error => {
+      console.error('Erreur lors du chargement des données des municipalités:', error);
+    });
+  
+  // Fetch pour récupérer les données des préfectures
+  fetch('data/prefecture.geojson')
+    .then(response => response.json())
+    .then(data => {
+      prefectureLayer = L.geoJSON(data, {
+        style: function (feature) {
+          return {
+            fillColor: 'white',
+            fillOpacity: 0,
+            color: 'grey',
+            weight: 2
+          };
+        },
+        onEachFeature: function (feature, layer) {
+          var popupprefecture = "<b>Nom préfecture: </b>" + feature.properties.prefecture + "<br>" +
+            "<b>Résidant en 2011: </b>" + feature.properties['2011'] + "<br>" +
+            "<b>Résidant en 2013: </b>" + feature.properties['2013'] + "<br>" +
+            "<b>Résidant en 2014: </b>" + feature.properties['2014'] + "<br>" +
+            "<b>Résidant en 2015: </b>" + feature.properties['2015'] + "<br>" +
+            "<b>Résidant en 2016: </b>" + feature.properties['2016'] + "<br>" +
+            "<b>Résidant en 2017: </b>" + feature.properties['2017'];
+          layer.bindPopup(popupprefecture);
+        }
+      }).addTo(map);
+    })
+    .catch(error => {
+      console.error('Erreur lors du chargement des données des préfectures:', error);
+    });
+  
+
+// Fin code julien

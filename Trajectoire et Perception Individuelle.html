@@ -43,16 +43,37 @@
                 <h4>Trajectoire et Perception Individuelle</h4>
                 <hr>
                 <p> [...]</p>
+
+                <!-- Ajout JULIEN -->
+
+                <!-- Boutons d'affichage des couches administratives -->
+                <hr>
+                <h5>Division administrative du Japon</h5>
+                <button id="togglePrefecture" class="style_boutons_divisions_adm"
+                  aria-label="Afficher/masquer la couche des préfectures">Préfecture</button>
+                <button id="toggleMunicipalite" class="style_boutons_divisions_adm"
+                  aria-label="Afficher/masquer la couche des municipalités">Municipalité</button>
+                <hr>
+
+                <!-- Fin ajout JULIEN -->
+
                 <hr>
                 <div>
                   <h5>Choix de l'individu type</h5>
-                  <select id="id_dilemSelect">
-                    <option value="">Sélectionnez un ID</option>
+                  <select id="id_dilemSelect" size=4>
                     <option value="ID03">ID03</option>
                     <option value="ID04">ID04</option>
+                    <option value="ID05">ID05</option>
+                    <option value="ID06">ID06</option>
+                    <option value="ID07">ID07</option>
+                    <option value="ID08">ID08</option>
+                    <option value="ID09">ID09</option>
+                    <option value="ID10">ID10</option>
+
                   </select>
                 </div>
                 <hr>
+                
                 <div>
                   <h5>Echelle de la Carte</h5>
                   <input type="radio" id="option1" name="options" value="japan" onclick="zoomToJapan()">

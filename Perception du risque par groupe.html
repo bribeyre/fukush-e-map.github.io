@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dist_side_panel/leaflet-sidepanel.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="dist_heatmap/leaflet-heat.js"></script>
   <!-- Full screen -->
 </head>
 
@@ -21,6 +22,7 @@
   <div id="header"></div>
   <div id="map-container" class="custom-map-container">
     <div id="map">
+      <div id="mapContainer2" class="map"></div>
       <!-- Side Panel left -->
       <div id="mySidepanelLeft" class="sidepanel" aria-label="side panel" aria-hidden="false">
         <div class="sidepanel-inner-wrapper">
@@ -71,8 +73,8 @@
 
                   <hr>
                   <h6>Carte de mesure officielle diffusée par le gouvernement (en 2019)</h6>
-                  <input type="checkbox" id="checkbox3" name="checkbox3">
-                  <label for="checkbox3">Radation mésurée par le gouvernement</label><br>
+                  <input type="checkbox" id="toggleHeatmap">
+                  <label for="toggleHeatmap">Afficher la heatmap</label>
                 </div>
 
                 <hr>
