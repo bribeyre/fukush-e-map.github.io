@@ -19,8 +19,8 @@
 <body>
   <!-- Header -->
   <div id="header"></div>
-  <div id="map-container" class="custom-map-container">
-    <div id="map">
+  <div id="map-container-wrapper" class="custom-map-container">
+    <div id="mapContainer1" class="map">
       <!-- Side Panel left -->
       <div id="mySidepanelLeft" class="sidepanel" aria-label="side panel" aria-hidden="false">
         <div class="sidepanel-inner-wrapper">
@@ -41,22 +41,15 @@
               <div class="sidepanel-tab-content" data-tab-content="tab-1">
                 </h1>
                 <h4>Trajectoire et Perception Individuelle</h4>
-                <hr>
-                <p> [...]</p>
-
-                <!-- Ajout JULIEN -->
 
                 <!-- Boutons d'affichage des couches administratives -->
                 <hr>
                 <h5>Division administrative du Japon</h5>
                 <button id="togglePrefecture" class="style_boutons_divisions_adm"
-                  aria-label="Afficher/masquer la couche des préfectures">Préfecture</button>
-                <button id="toggleMunicipalite" class="style_boutons_divisions_adm"
-                  aria-label="Afficher/masquer la couche des municipalités">Municipalité</button>
-                <hr>
+                  aria-label="Afficher/masquer la couche des préfectures">
+                  <i class="fas fa-eye-slash"></i> Masquer Préfecture</button>
 
-                <!-- Fin ajout JULIEN -->
-
+                <!-- Choix des individu type -->
                 <hr>
                 <div>
                   <h5>Choix de l'individu type</h5>
@@ -73,9 +66,9 @@
                   </select>
                 </div>
                 <hr>
-                
+
                 <div>
-                  <h5>Echelle de la Carte</h5>
+                  <h5>Echelle de la carte</h5>
                   <input type="radio" id="option1" name="options" value="japan" onclick="zoomToJapan()">
                   <label for="option1">Japon</label><br>
                   <input type="radio" id="option2" name="options" value="fukushima" onclick="zoomToFukushima()">
@@ -91,7 +84,7 @@
                   <h5>Perception du risque</h5>
                   <button id="toggleLayer" aria-label="Afficher/masquer la couche"><i id="T"
                       class="far fa-eye"></i></button>
-                  <label for="toggleLayer">Tracé de la perception du risques</label><br>
+                  <label for="toggleLayer">Tracé de la perception du risque</label><br>
                   <hr>
                   <div>
                     <label for="slider">Choisir une année</label><br>

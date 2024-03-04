@@ -1,4 +1,4 @@
-const map = L.map('map', {
+let map = L.map('mapContainer1', {
   zoomControl: false
 }).setView([36.2048, 138.2529], 5);
 L.control.scale({
@@ -17,7 +17,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 // Création d'un contrôle personnalisé pour le bouton de plein écran
 var fullscreenControl = L.Control.extend({
-  onAdd: function (map) {
+  onAdd: function () {
     var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
     var button = L.DomUtil.create('a', 'leaflet-bar-part leaflet-control-custom', container);
     button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran par défaut
@@ -49,7 +49,7 @@ map.addControl(new fullscreenControl({ position: 'bottomright' }));
 
 // Fonction pour mettre la carte en plein écran
 function toggleFullScreen() {
-  var elem = document.getElementById('map');
+  var elem = document.getElementById('map-container-wrapper');
   var button = document.querySelector('.leaflet-control-custom');
 
   if (!document.fullscreenElement) {
@@ -64,6 +64,7 @@ function toggleFullScreen() {
     button.innerHTML = '<i class="fas fa-expand"></i>'; // icône pour entrer en plein écran
   }
 }
+
 
 // ZOOM TO JAPAN
 function zoomToJapan() {
@@ -201,95 +202,124 @@ ChargerCentrale()
     console.error('Erreur lors du chargement des données:', error);
   });
 
+// Affichage de la prefecture
+var prefectureVisible = true;
 
-  var prefectureVisible = true;
-  var municipaliteVisible = true;
-  
-  document.getElementById('togglePrefecture').addEventListener('click', function () {
-    toggleLayer(prefectureLayer, 'togglePrefecture');
-  });
-  
-  document.getElementById('toggleMunicipalite').addEventListener('click', function () {
-    toggleLayer(municipaliteLayer, 'toggleMunicipalite');
-  });
-  
-  function toggleLayer(layer, buttonId) {
-    if (map.hasLayer(layer)) {
-      map.removeLayer(layer);
-      if (buttonId === 'togglePrefecture') {
-        prefectureVisible = false;
-      } else if (buttonId === 'toggleMunicipalite') {
-        municipaliteVisible = false;
-      }
-      document.getElementById(buttonId).textContent = 'Afficher ' + buttonId.split('toggle')[1];
-    } else {
-      layer.addTo(map);
-      if (buttonId === 'togglePrefecture') {
-        prefectureVisible = true;
-      } else if (buttonId === 'toggleMunicipalite') {
-        municipaliteVisible = true;
-      }
-      document.getElementById(buttonId).textContent = 'Masquer ' + buttonId.split('toggle')[1];
-    }
+document.getElementById('togglePrefecture').addEventListener('click', function () {
+  toggleLayer(prefectureLayer, 'togglePrefecture');
+});
+
+function toggleLayer(layer, buttonId) {
+  var button = document.getElementById(buttonId);
+  if (map.hasLayer(layer)) {
+    map.removeLayer(layer);
+    prefectureVisible = false;
+    button.innerHTML = '<i class="fas fa-eye"></i> Afficher ' + buttonId.split('toggle')[1];
+  } else {
+    layer.addTo(map);
+    prefectureVisible = true;
+    button.innerHTML = '<i class="fas fa-eye-slash"></i> Masquer ' + buttonId.split('toggle')[1];
   }
-  
-  // Fetch pour récupérer les données des municipalités
-  fetch('data/municipalite.geojson')
-    .then(response => response.json())
-    .then(data => {
-      municipaliteLayer = L.geoJSON(data, {
-        style: function (feature) {
-          return {
-            fillColor: 'white',
-            fillOpacity: 0.3,
-            color: 'white',
-            weight: 1
-          };
-        },
-        onEachFeature: function (feature, layer) {
-          var popupmunicipalite = "<b>Nom municipalitée: </b>" + feature.properties.commune + "<br>" +
-            "<b>Résidant en 2011: </b>" + feature.properties['2011'] + "<br>" +
-            "<b>Résidant en 2013: </b>" + feature.properties['2013'] + "<br>" +
-            "<b>Résidant en 2014: </b>" + feature.properties['2014'] + "<br>" +
-            "<b>Résidant en 2015: </b>" + feature.properties['2015'] + "<br>" +
-            "<b>Résidant en 2016: </b>" + feature.properties['2016'] + "<br>" +
-            "<b>Résidant en 2017: </b>" + feature.properties['2017'];
-          layer.bindPopup(popupmunicipalite);
-        }
-      }).addTo(map);
-    })
-    .catch(error => {
-      console.error('Erreur lors du chargement des données des municipalités:', error);
-    });
-  
-  // Fetch pour récupérer les données des préfectures
-  fetch('data/prefecture.geojson')
-    .then(response => response.json())
-    .then(data => {
-      prefectureLayer = L.geoJSON(data, {
-        style: function (feature) {
-          return {
-            fillColor: 'white',
-            fillOpacity: 0,
-            color: 'grey',
-            weight: 2
-          };
-        },
-        onEachFeature: function (feature, layer) {
-          var popupprefecture = "<b>Nom préfecture: </b>" + feature.properties.prefecture + "<br>" +
-            "<b>Résidant en 2011: </b>" + feature.properties['2011'] + "<br>" +
-            "<b>Résidant en 2013: </b>" + feature.properties['2013'] + "<br>" +
-            "<b>Résidant en 2014: </b>" + feature.properties['2014'] + "<br>" +
-            "<b>Résidant en 2015: </b>" + feature.properties['2015'] + "<br>" +
-            "<b>Résidant en 2016: </b>" + feature.properties['2016'] + "<br>" +
-            "<b>Résidant en 2017: </b>" + feature.properties['2017'];
-          layer.bindPopup(popupprefecture);
-        }
-      }).addTo(map);
-    })
-    .catch(error => {
-      console.error('Erreur lors du chargement des données des préfectures:', error);
-    });
-  
+}
 
-// Fin code julien
+
+// Fetch pour récupérer les données des préfectures
+fetch('data/prefecture.geojson')
+  .then(response => response.json())
+  .then(data => {
+    prefectureLayer = L.geoJSON(data, {
+      style: function (feature) {
+        return {
+          fillColor: 'white',
+          fillOpacity: 0.3,
+          color: 'grey',
+          weight: 1.25
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        var popupprefecture = "<b>Nom préfecture: </b>" + feature.properties.prefecture + "<br>" +
+          "<b>Résidant en 2011: </b>" + feature.properties['2011'] + "<br>" +
+          "<b>Résidant en 2013: </b>" + feature.properties['2013'] + "<br>" +
+          "<b>Résidant en 2014: </b>" + feature.properties['2014'] + "<br>" +
+          "<b>Résidant en 2015: </b>" + feature.properties['2015'] + "<br>" +
+          "<b>Résidant en 2016: </b>" + feature.properties['2016'] + "<br>" +
+          "<b>Résidant en 2017: </b>" + feature.properties['2017'];
+        layer.bindPopup(popupprefecture);
+      }
+    }).addTo(map);
+  })
+  .catch(error => {
+    console.error('Erreur lors du chargement des données des préfectures:', error);
+  });
+
+
+// AJOUTER BASTIEN HEATMAP
+ var map2;
+
+
+    // Fonction pour créer et afficher la deuxième carte et la heatmap
+    function showSecondMapAndHeatmap() {
+      // Afficher ou cacher la deuxième carte en fonction de l'état de la checkbox
+      var mapContainer2 = document.getElementById('mapContainer2');
+      mapContainer2.style.display = document.getElementById('showSecondMapCheckbox').checked ? 'block' : 'none';
+
+      // Si la carte est affichée, créer une carte Leaflet centrée sur New York, USA
+      if (mapContainer2.style.display === 'block') {
+        map2 = L.map('mapContainer2').setView([36.2048, 138.2529], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map2);
+
+        // Si la checkbox est cochée, afficher la heatmap
+        if (document.getElementById('showSecondMapCheckbox').checked) {
+          fetchHeatmapData(map2);
+        }
+
+        // Synchroniser les mouvements des deux cartes
+        syncMaps();
+      }
+    }
+
+    // Fonction pour récupérer les données de la heatmap et afficher la heatmap sur map2
+    function fetchHeatmapData(map2) {
+      fetch('data/Heatmap.geojson')
+        .then(response => response.json())
+        .then(data => {
+          var heatData = [];
+          var features = data.features;
+          features.forEach(function (feature) {
+            var coordinates = feature.geometry.coordinates;
+            var radiationValue = feature.properties.radiation;
+            heatData.push([coordinates[0][1], coordinates[0][0], radiationValue]);
+          });
+          // Créer la heatmap avec les données et l'ajouter à map2
+          var heat = L.heatLayer(heatData, {
+            radius: 20,
+            gradient: {
+              0.25: 'blue',   // Low values
+              0.5: 'lime',    // Moderate values
+              0.75: 'yellow', // High values
+              1: 'red'        // Maximum values
+            }
+          }).addTo(map2);
+        })
+        .catch(error => {
+          console.error('Erreur lors du chargement des données de la heatmap:', error);
+        });
+    }
+
+    // Fonction pour synchroniser les mouvements des deux cartes
+    function syncMaps() {
+      map.on('move', function () {
+        map2.setView(map.getCenter(), map.getZoom(), { animate: false });
+      });
+      map2.on('move', function () {
+        map.setView(map2.getCenter(), map2.getZoom(), { animate: false });
+      });
+    }
+
+    // Ajouter un écouteur d'événements au changement de l'état de la checkbox pour la deuxième carte et la heatmap
+    document.getElementById('showSecondMapCheckbox').addEventListener('change', function () {
+      showSecondMapAndHeatmap();
+    });
+// FIN AJOUT HEAMAP

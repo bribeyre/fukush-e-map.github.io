@@ -128,12 +128,6 @@ body {
   height: calc(100vh - 80px);
 }
 
-#map {
-  height: 100%;
-  /* Hauteur de la carte à 100% du conteneur */
-  margin-top: 30px;
-  z-index: 999;
-}
 
 .border-bottom {
   border-bottom: 0px solid #dee2e6 !important;
@@ -201,8 +195,6 @@ label {
 select {
   font-size: small;
 }
-
-
 /* Style pour positionner les labels en dessous */
 #tickmarks {
   display: flex;
@@ -240,29 +232,112 @@ select {
   overflow-y: auto;
 }
 
+/* Style pour la checkbox */
+#showSecondMapCheckbox {
+  display: block;
+  margin-top: 10px;
+  /* Espacement pour séparer la checkbox des cartes */
+}
+
+/* Heatmap */
 #mapContainer2 {
   display: none;
+  right: 0;
+  z-index: 1000;
 }
 
+#map-container-wrapper {
+  position: relative;
+  /* Assurez-vous que le conteneur est positionné de manière relative */
+}
 
-/* Conteneur pour les cartes */
-#mapContainer {
-  display: flex;
+#mapContainer1 {
+  position: absolute;
+  /* Position absolue pour permettre la superposition */
+  left: 0;
+  /* Aligner la gauche de la carte */
   width: 100%;
-  height: 100%;
+  /* Utilisez la moitié de la largeur parente */
+  height: calc(100vh - 80px);
+  /* Hauteur de la carte */
+  z-index: 1;
+  /* Assurez-vous que la première carte est en dessous */
+  margin-top: 30px;
 }
 
-/* Styles pour chaque carte */
-.map {
-  flex: 1;
-  /* Chaque carte prend tout l'espace restant */
-  height: 100%;
+
+#mapContainer2 {
+  position: absolute;
+  /* Position absolue pour permettre la superposition */
+  right: 0;
+  /* Aligner la droite de la carte */
+  width: 35%;
+  /* Utilisez la moitié de la largeur parente */
+  height: calc(100vh - 80px);
+  /* Hauteur de la carte */
+  z-index: 2;
+  /* Assurez-vous que la deuxième carte est au-dessus */
+  margin-top: 30px;
 }
 
 
-    /* Style pour la checkbox */
-    #showSecondMapCheckbox {
-      display: block;
-      margin-top: 10px;
-      /* Espacement pour séparer la checkbox des cartes */
-    }
+/* HEATMAP LEGEND */
+.heatmap-legend {
+  position: absolute;
+  bottom: 4.5%;
+  /* Position en bas à 5% de la hauteur de la carte */
+  right: 1%;
+  /* Position à droite à 5% de la largeur de la carte */
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  /* Aligner les éléments sur la même ligne */
+  justify-content: space-between;
+  /* Répartir les éléments uniformément */
+  opacity: 90%;
+}
+
+/* Style pour le dégradé de couleurs */
+.heatmap-gradient {
+  width: 20px;
+  /* Largeur du rectangle vertical */
+  height: 77px;
+  /* Hauteur du rectangle vertical */
+  background: linear-gradient(to bottom, blue, lime, yellow, red);
+  border-radius: 5px;
+  margin-right: 10px;
+  /* Ajustement de la marge droite */
+}
+
+.legend-label-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style pour les étiquettes de légende */
+.legend-label {
+  margin-left: 5px;
+  /* Ajustez la marge selon vos besoins */
+}
+
+
+/* BUtton prefecture */
+
+.style_boutons_divisions_adm {
+  background-color: transparent; /* Supprime le fond gris */
+  border: none; /* Supprime les bordures */
+  cursor: pointer; /* Change le curseur au survol */
+  color: #333; /* Couleur du texte */
+  font-size: small; /* Taille de la police */
+  padding: 0; /* Supprimer le rembourrage */
+  margin: 0; /* Supprimer la marge */
+}
+
+.style_boutons_divisions_adm:hover {
+  color: #666; /* Couleur du texte au survol */
+}
+
