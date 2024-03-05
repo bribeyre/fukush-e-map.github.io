@@ -341,3 +341,25 @@ select {
   color: #666; /* Couleur du texte au survol */
 }
 
+/* style TOGLLE */
+#toggleLayer1, #toggleLayer2 {
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+#toggleLayer1:focus, #toggleLayer2:focus {
+  outline: none; /* Supprime la bordure de focus */
+}
+/* Styles pour la légende personnalisée */
+.legendIndiv {
+  position: absolute;
+  bottom: 10px; /* Ajustez la position verticale selon vos besoins */
+  right: 40px; /* Ajustez la position horizontale selon vos besoins */
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 1000; /* Assurez-vous que la légende est au-dessus des autres éléments de la carte */
+}

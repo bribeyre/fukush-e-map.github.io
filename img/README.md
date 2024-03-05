@@ -1,1 +1,0 @@
-# Fukush-e-map
